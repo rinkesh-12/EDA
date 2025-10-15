@@ -1,0 +1,146 @@
+EDA Steps
+1) Viewing the Data
+head(), tail(), shape, info()
+What columns do I have? What types of data?
+
+2) Summary Statistics
+mean, median, mode, std, min, max, quartiles
+Helps understand spread and central tendency
+
+3) Value Counts 
+How many unique values in a column?
+Great for categorical columns
+
+4) Missing Value Analysis Where are the gaps? What percent of the data is missing?
+
+5) Visualizations
+Histograms distribution of values
+Boxplots outliers and spread
+Bar plots → comparisons of categories
+Correlation heatmaps → linear relationships
+between numerical features
+Scatter plots → bivariate relationships
+
+6) Target Variable Exploration
+How does your output (like 'charges' in your dataset) relate to other variables?
+
+You can't clean or preprocess what you don't understand.
+It helps you identify mistakes, biases, or limitations in the data.
+It guides the direction of your data cleaning and feature engineering.
+It gives your audience or stakeholders a "story" or overview of what the data is telling you.
+
+===============================================================================================================
+Check Correlation: https://chatgpt.com/share/68b97d45-f6e0-8013-a5e4-35c6733812b4
+
+Measures linear relationship between two variables.
+Value range: -1 to +1
+	# +1: strong positive correlation
+	# -1: strong negative correlation
+	# 0: no linear correlation
+
+Spearman rank correlation
+	# Measures monotonic relationships (not just linear).
+	# Useful when data is not normally distributed or has outliers.
+
+Kendall Tau correlation
+	# Another rank-based method.
+	# Good for small datasets or when data has many tied ranks.
+
+📌 Key Points to Remember
+Correlation values range from -1 to +1.
+	+1 = Perfect positive relation (when one increases, the other also increases).
+	-1 = Perfect negative relation (when one increases, the other decreases).
+	0 = No linear relation.
+
+In ML feature analysis, we look for:
+	High correlations (>0.7 or <-0.7) → strong relation.
+	Near 0 correlations → almost no relation.
+	Very high correlation between features (>0.9) → possible multicollinearity → redundant features.
+
+| Absolute Value of r | Interpretation   |
+| ------------------- | ---------------- |
+| 0.0 – 0.1           | Negligible       |
+| 0.1 – 0.3           | Weak             |
+| 0.3 – 0.5           | Moderate         |
+| 0.5 – 0.7           | Strong           |
+| 0.7 – 0.9           | Very Strong      |
+| 0.9 – 1.0           | Extremely Strong |
+
+
+Ex:
+| Feature                        | Correlation with Outcome | Importance (Easy Meaning)                                 |
+| ------------------------------ | ------------------------ | --------------------------------------------------------- |
+| **Pregnancies**                | **0.47**                 | Strongest link → more pregnancies, higher diabetes chance |
+| **Insulin**                    | 0.29                     | Higher insulin relates to diabetes                        |
+| **Diabetes Pedigree (Family)** | 0.24                     | Family history matters                                    |
+| **BMI (Body Weight)**          | 0.17                     | Overweight slightly raises risk                           |
+| **Skin Thickness**             | 0.13                     | Weak relation                                             |
+| **Blood Pressure**             | 0.07                     | Very weak relation                                        |
+| **Glucose**                    | 0.07                     | Very weak relation (surprising in this data)              |
+| **—**                          | —                        | —                                                         |
+
+===============================================================================================================
+
+Data cleaning
+1. Handle Missing Values
+Check which columns have missing values (nulls)
+
+Strategies to handle:
+Drop missing rows/columns (only if very few)
+Impute with:
+	Mean/Median → for numerical data
+	Mode → for categorical data
+	Advanced: Linear regression, KNN, or interpolation (for future learning)
+
+2. Remove Duplicates
+Detect and drop exact duplicate rows
+
+3. Fix Data Types
+Convert wrong types (e.g., numbers stored as strings, dates as text)
+
+4. Handle Inconsistent Categories
+Clean up categorical values like:
+"Male", "male", "MALE" → should all become "male"
+"Yes", "yes", "Y" → unify to one format
+
+5. Detect and Handle Outliers
+Use boxplots, IQR, or Z-score
+Handle by:
+	Removing (if clearly wrong)
+	Capping (e.g., to 95th percentile)
+
+6. Fix Logic or Domain Errors
+E.g., age = -5 is invalid, or BMI = 150 likely an error
+Can replace with mean, median, or remove
+
+===============================================================================================================
+
+Data Preprocessing
+1. Encoding Categorical Variables
+Convert text labels (like "male", "yes", "southeast") into numbers.
+
+Two common methods:
+Label Encoding (Ordinal):
+Good for ordered categories like "Low", "Medium", "High"
+One-Hot Encoding (Nominal):
+For non-ordered categories like region
+
+2) Feature Transformation (Log, Square root, etc.)
+Used to handle skewed data, like right-skewed or left skewed data.
+
+3. Feature Scaling (Normalization or Standardization)
+Bring numerical values to the same scale — especially useful for distance-based algorithms.
+
+Normalization (Min-Max Scaling): Scales values between 0 and 1
+
+Standardization (Z-score Scaling):
+Transforms data to have mean 0 and std 1
+
+===============================================================================================================
+
+Feature Selection
+
+
+===============================================================================================================
+
+Feature Engineering
